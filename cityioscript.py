@@ -1,10 +1,12 @@
 import webbrowser
+import codecs
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 url = "https://cityquiz.io/quizzes/usa"
 txtfile = "cities.txt"
 States = ["District of Columbia", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Rhode Island", "South Carolina", "South Dakota", "West Virginia", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "Wisconsin", "Wyoming"]
+Cities = []
 
 ## open browser
 driver = webdriver.Firefox()
@@ -15,7 +17,9 @@ cityInput = driver.find_element_by_id("city-input")
 stateInput = driver.find_element_by_id("state-input")
 
 ## open provided list
-Cities = open(txtfile, 'r').readlines()
+with codecs.open(txtfile, encoding='utf-8') as f:
+    for line in f:
+        Cities.append(line)
 Cities.reverse()
 
 ## take the list provided and strip away population info
