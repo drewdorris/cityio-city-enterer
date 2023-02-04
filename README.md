@@ -4,14 +4,14 @@ Enter a list of cities into https://cityquiz.io/quizzes/usa automatically
 
 ### Stuff needed:
 
-Firefox
+1. Firefox
 
-geckodriver for Firefox https://github.com/mozilla/geckodriver/releases
-For Windows, you'll probably want the win64 download. Put the downloaded exe somewhere in the file system and add its path to your PATH system variable
+2. geckodriver for Firefox https://github.com/mozilla/geckodriver/releases
+   * For Windows, you'll probably want the win64 download. Put the extracted exe somewhere in the file system and add its path to your PATH system variable
 
-Python 3.?
+3. Python 3.?
 
-Selenium for Python (install using pip)
+4. Selenium for Python (install using pip)
 
 ### Usage
 
