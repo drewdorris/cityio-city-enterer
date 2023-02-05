@@ -11,7 +11,7 @@ Enter a list of cities into https://cityquiz.io/quizzes/usa automatically
 
 3. Python 3.?
 
-4. Selenium for Python (install using pip)
+4. Python tools: Selenium, seleniumwire (install using pip)
 
 ### Usage
 
