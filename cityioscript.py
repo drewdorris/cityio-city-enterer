@@ -4,6 +4,7 @@ import time
 import warnings
 from urllib.parse import unquote
 from seleniumwire import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
@@ -22,8 +23,8 @@ driver = webdriver.Firefox()
 driver.get(url)
 
 ## find city/state fields in cityquiz.io
-cityInput = driver.find_element_by_id("city-input")
-stateInput = Select(driver.find_element_by_id("state-input"))
+cityInput = driver.find_element(By.ID, "city-input")
+stateInput = Select(driver.find_element(By.ID, "state-input"))
 
 ## open provided text file
 with codecs.open(txtfile, encoding='utf-8') as f:
@@ -65,14 +66,14 @@ if len(Cities) > 20:
     ## jankiest solution: click the "show all" button to get the list of entered cities, then compare it with list in code
     ## opening this can take some time for large lists... I don't know if I can somehow wait right until I know it's open
     ## so I'll just wait 20 seconds and then hope it has loaded by then 
-    unopenedListenedCities = driver.find_elements_by_xpath("//*[@class='my-cities-list']")[0]
-    div = unopenedListenedCities.find_element_by_xpath("..")
-    button = div.find_element_by_xpath('.//button[@class="align-center"]').click()
+    unopenedListenedCities = driver.find_elements(By.XPATH, "//*[@class='my-cities-list']")[0]
+    div = unopenedListenedCities.find_element(By.XPATH, "..")
+    button = div.find_element(By.XPATH, './/button[@class="align-center"]').click()
     time.sleep(20)
 
 ## Get the list of cities now that the entire list is displayed
-openedListenedCities = driver.find_elements_by_xpath("//*[@class='my-cities-list']")[0]
-divAgain = openedListenedCities.find_element_by_xpath("..").text
+openedListenedCities = driver.find_elements(By.XPATH, "//*[@class='my-cities-list']")[0]
+divAgain = openedListenedCities.find_element(By.XPATH, "..").text
 ## Put it into a list and make it look like the one made from the text file above
 citiesList = divAgain.split('\n')
 citiesList = citiesList[1:len(citiesList) - 1]
